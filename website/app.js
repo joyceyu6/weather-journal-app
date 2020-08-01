@@ -4,7 +4,6 @@
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-
 /*CHAINED PROMISES TO GET AND POST DATA*/
 document.getElementById('generate').addEventListener('click', performAction);
 
@@ -12,8 +11,9 @@ function performAction(){
 //select the actual value of an HTML input to include in POST  
   const feelings =  document.getElementById('feelings').value;
   const zip = document.getElementById('zip').value;
+  let baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=3e402c77664060336d9eda89444507b7`;
 
-//   fetch(`http://localhost:3000/test?name=${formText}`)
+//   fetch(baseURL)
 //     .then(res => {        
 //         return res.json()
 //     })
@@ -22,19 +22,21 @@ function performAction(){
 //         document.getElementById('results').innerHTML = data[0];
 //     })
 
-  
-  //base URL? API key save to .env
-
+    
   //Faking an API call
-getWeather('/fakeWeatherData')
-//New Syntax
-.then(function(data){
-    //Add data
-    console.log(data)    
-    postData('/addWeather',{feelings:feelings, temp:data.temp, date:newDate})
+    // getWeather('/fakeWeatherData')
+    fetch(baseURL)
+    //New Syntax
+        .then(res => {
+            return res.json()
+        })        
+        .then(function(data){
+            //Add data
+            console.log(data)    
+            postData('/addWeather',{feelings:feelings, temp:data.main.temp, date:newDate})
 
-//we can do this because of Async!
-updateUI()
+    //we can do this because of Async!
+    updateUI()
 })
 
 }
