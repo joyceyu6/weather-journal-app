@@ -13,20 +13,7 @@ function performAction(){
   const zip = document.getElementById('zip').value;
   let baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&units=imperial&appid=3e402c77664060336d9eda89444507b7`;
 
-//   fetch(baseURL)
-//     .then(res => {        
-//         return res.json()
-//     })
-//     .then(function(data) {        
-//         // document.getElementById('results').innerHTML = data.message
-//         document.getElementById('results').innerHTML = data[0];
-//     })
-
-    
-  //Faking an API call
-    // getWeather('/fakeWeatherData')
-    fetch(baseURL)
-    //New Syntax
+    fetch(baseURL)   
         .then(res => {
             return res.json()
         })        
@@ -35,7 +22,7 @@ function performAction(){
             console.log(data)    
             postData('/addWeather',{feelings:feelings, temp:data.main.temp, date:newDate})
 
-    //we can do this because of Async!
+
     updateUI()
 })
 

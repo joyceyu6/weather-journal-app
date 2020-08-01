@@ -30,19 +30,6 @@ const server = app.listen(port, listening);
     // console.log(server);
     console.log(`running on localhost: ${port}`);
   };
-
-// //Dummy API Endpoint
-// const fakeData = {
-//     // animal: 'lion',
-//     temp: '87 F'
-
-//   }
-  
-//   app.get('/fakeWeatherData', getFakeData)
-  
-//   function getFakeData(req, res){
-//    res.send(fakeData)
-//   }
   
   // GET route
   const weatherData=[];
